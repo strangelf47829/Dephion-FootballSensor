@@ -6,6 +6,7 @@
  */
 
 #include "Poly.h"
+#include "vectormath.h"
 
 Poly::Poly() {
 	// TODO Auto-generated constructor stub

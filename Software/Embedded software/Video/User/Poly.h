@@ -2,7 +2,7 @@
  * Poly.h
  *
  *  Created on: Oct 11, 2022
- *      Author: stran
+ *      Author: Rafael de Bie
  */
 
 #ifndef POLY_H_

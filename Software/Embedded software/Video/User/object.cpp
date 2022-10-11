@@ -6,6 +6,7 @@
  */
 
 #include "object.h"
+#include "vectormath.h"
 
 object::object() {
 	// TODO Auto-generated constructor stub

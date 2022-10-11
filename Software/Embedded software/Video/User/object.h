@@ -2,7 +2,7 @@
  * object.h
  *
  *  Created on: Oct 11, 2022
- *      Author: stran
+ *      Author: Rafael de Bie
  */
 
 #ifndef OBJECT_H_
