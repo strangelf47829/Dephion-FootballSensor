@@ -1,0 +1,166 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Designing a redundant measuring system using analog, digital, and electromagnetic elements to be used in a self-programming-and-calibration environment: interim paper}
+\author{Rafael de Bie}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\section{abstract}
+
+Dephion has contracted BallSense to create a football table, capable of sensing the position of the ball among other variables. A prototype is currently under development, and is projected to be finished no later than november. \\
+\\
+The prototype is to use a camera as the main sensor, detecting the position of the ball visually in real time. To ensure maximum reliability, a physical sensor is in active (and in late) stages of development. These systems are then combined in a quasi-CNN algorithm (see chapter ...) for more details.
+
+\section{keywords}
+
+Sensor, Camera, Algorithms, Machine Learning, PCB Designs, Analog, Digital, Circuit, Electronics, High frequency signals, Radio, Electromagnetism
+
+\pagebreak
+
+\section{Camera}
+
+\subsection{Positioning}
+\subsection{Lighting}
+\subsection{Pre-processing}
+
+\section{Contact array}
+
+\subsection{Theory}
+
+\textit{Because the ball, the table, and the players are never inside one another, any place a sensor isn’t is where a ball can be, and a ball cannot be where a sensor is. Thus, the position of the ball is known if it is known where the sensor isn’t. 
+Capacitor array} 
+\\
+
+
+Because, by definition, layers 3 and 2 refer to objects not found in both layers, any object in layer 2 (the ball) is never positioned in layer 3. Conversely, objects from layer 3 can never be positioned in objects found in layer 2. (This means nothing more than that the ball is never inside the players). Furthermore, because layer 3 refers to distinct objects, objects from layer 3 can never intersect other objects from layer 3. This means that a sensor placed between layer 1 and 3 can only ever sense layer 2, given the right constraints to layer 3.  Because layers 2 and 3 cannot intersect each other, an object from layer 2 can only physically interact with an object from layer 3 by exerting a force onto it. Thus, for a sensor between layers 1 and 3 to detect an object from layer 2, the object must exert a force on the sensor on layer 3 (in this case pushing it) to be detected.  This is the core concept behind the capacitor array sensor.  A capacitor is formed between layers 1 and 3 by placing a metal plate on layer 1 and placing a metal plate on layer 3 with constraints allowing for free rotation and movement along the x axis. If an object from layer 2 collides with the metal plate from layer 3, it is pushed out of the way (see above) and as such, the capacitance between the metal plates drops significantly. By placing enough sensors 
+  on layers 1 and 3, it is virtually impossible for an object from layer 2 to traverse the field without detection. By scanning for the capacitance on each plate from layer 1, the position of the sensors from layer 3 can be calculated and by extension the game state can be refreshed. The necessity to use capacitance as the dependant variable arose from the fact that the signal carrier must be AC. The possibility of using a simpler DC signal carrier was explored, but it was found that pressure must be applied to the contacts for there to be a reliable contact. Therefore, a DC signal carrier was ruled out as impossible in favour of a contactless AC signal carrier in the form of capacitance. 
+
+
+\subsection{Analog Circuitry}
+
+*picture*
+
+\subsubsection{POWAHHHHHHHH}
+
+... 20V rail for capactiors and stuff ...
+
+... 10v pk-pk + 5vdc for clocks ...
+
+
+... 2.8v for op-amp 2 and more ...
+... 5v for digital logic ...
+
+\subsubsection{10 MHz clock}
+... 10MHz clock ...
+\\
+\subsubsection{The virtual capacitor}
+... Capacitor formed between ....
+\\
+\subsubsection{diodes}
+... diodes to discharge ...
+\\
+\subsubsection{MOSFET}
+... MOSFET to discharge instantly... put upside down... Whoops 1 ...
+\\
+\subsubsection{Op-Amp 1: DC??}
+... "differentiator 1"... output is a bias input... whoops 2 ...
+\\
+... some weird amplifier setup idk
+\\
+... 
+\subsubsection{Op-Amp 2: actual amplifier}
+... Now it actually works like it should
+
+\subsubsection{The scopes}
+... scopes are attached there and where so resistors there and here
+
+\subsection{Digital Circuitry}
+\subsubsection{Embedded systems}
+\paragraph{arduino}
+\subsubsection{Sensor}
+fdafdsa
+d
+\paragraph{Schmitt triggers}
+\medskip
+fasfdsa
+\paragraph{sss}
+d
+
+*picture*
+
+
+\subsection{EMI radiation and detection}
+... sdr test ... 10MHz to 130 MHz @ some 20-30 meters
+\\
+... bars as antenna ...
+... loading of the antenna ...
+\subsection{Sensing ciruitry}
+... op amp 3 ...
+\subsection{Multiplexing}
+... current model ...
+\\
+... theoretical models ...
+\\
+... target model
+
+\section{Measurements}
+\section{Conclusion}
+
+
+\end{document}

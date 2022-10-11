@@ -1,6 +1,6 @@
 #include "BCM2837.h"
-#include "bmJava.c"
 #include "bmNEAT.c"
+#include "bmCNN.c"
 
 typedef unsigned int uint;
 

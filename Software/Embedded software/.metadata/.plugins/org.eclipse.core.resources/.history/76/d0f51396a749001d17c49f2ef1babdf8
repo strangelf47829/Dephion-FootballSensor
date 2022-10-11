@@ -1,0 +1,9 @@
+
+int get(){
+	return 0;
+}
+
+void draw()
+{
+	*((int*)2) = 2;
+}

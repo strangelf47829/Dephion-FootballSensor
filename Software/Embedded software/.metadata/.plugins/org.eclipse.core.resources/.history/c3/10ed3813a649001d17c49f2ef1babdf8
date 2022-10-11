@@ -1,0 +1,22 @@
+
+int xRes = 600;
+int yRes = 400;
+
+int fovX = 90;
+int fovY = 50;
+
+typedef vector point;
+
+
+
+struct point
+{
+	double x;
+	double y;
+};
+
+struct line
+{
+	point a;
+	point b;
+};

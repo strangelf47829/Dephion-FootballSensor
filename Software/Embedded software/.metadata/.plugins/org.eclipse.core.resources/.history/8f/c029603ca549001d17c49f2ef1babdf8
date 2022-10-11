@@ -1,0 +1,5 @@
+void scanLine()
+{
+	int a = 0;
+	scanLine();
+}

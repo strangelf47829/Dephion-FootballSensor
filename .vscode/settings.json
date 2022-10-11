@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "poly.h": "c",
+        "driver.h": "c"
+    }
+}

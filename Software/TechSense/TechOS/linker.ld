@@ -1,6 +1,5 @@
 ENTRY(_start)
  
-INPUT()
 
 SECTIONS
 {
