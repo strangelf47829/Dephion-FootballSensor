@@ -1,4 +1,0 @@
-void scanLine()
-{
-	int a = 0;
-}

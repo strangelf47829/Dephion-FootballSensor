@@ -1,7 +1,0 @@
-../User/object.cpp:10:1:object::object()	16	static
-../User/object.cpp:15:1:object::~object()	16	static
-../User/object.cpp:15:1:virtual object::~object()	16	static
-../User/object.cpp:19:1:object::object(const object&)	16	static
-../User/object.cpp:24:1:object::object(object&&)	16	static
-../User/object.cpp:29:9:object& object::operator=(const object&)	16	static
-../User/object.cpp:34:9:object& object::operator=(object&&)	16	static

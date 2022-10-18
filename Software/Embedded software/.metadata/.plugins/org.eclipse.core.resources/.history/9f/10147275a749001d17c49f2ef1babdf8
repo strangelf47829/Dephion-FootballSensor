@@ -1,5 +1,0 @@
-class driver {
-public:
-	static void draw();
-	static int get();
-};

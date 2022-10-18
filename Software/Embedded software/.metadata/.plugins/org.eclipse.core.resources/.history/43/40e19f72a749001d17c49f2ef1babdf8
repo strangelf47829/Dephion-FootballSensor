@@ -1,5 +1,0 @@
-class driver {
-public:
-	void draw();
-	int get();
-};

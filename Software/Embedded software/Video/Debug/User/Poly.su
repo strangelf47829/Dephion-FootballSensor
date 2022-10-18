@@ -1,7 +1,0 @@
-../User/Poly.cpp:10:1:Poly::Poly()	16	static
-../User/Poly.cpp:15:1:Poly::~Poly()	16	static
-../User/Poly.cpp:15:1:virtual Poly::~Poly()	16	static
-../User/Poly.cpp:19:7:Poly& Poly::operator=(Poly&&)	16	static
-../User/Poly.cpp:24:7:Poly& Poly::operator=(const Poly&)	16	static
-../User/Poly.cpp:29:1:Poly::Poly(Poly&&)	16	static
-../User/Poly.cpp:34:1:Poly::Poly(const Poly&)	16	static

@@ -1,6 +1,6 @@
 {
     "files.associations": {
-        "poly.h": "c",
-        "driver.h": "c"
+        "cstdlib": "cpp",
+        "cmath": "cpp"
     }
 }
