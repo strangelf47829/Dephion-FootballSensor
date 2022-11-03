@@ -3,12 +3,12 @@
 #include <stdio.h>
 #include "R3D.h"
 #include "R2D.h"
+#include "string"
+#include "string.h"
 
 #define xRes R2D::d->SCREEN_WIDTH
-#define yRes R2D::d->SCREEN_WIDTH
+#define yRes R2D::d->SCREEN_HEIGHT
 
-#define fovY R3D::fovY
-#define fovX R3D::fovX
 
 #define map(input,input_start,input_end,output_start,output_end) output_start + ((output_end - output_start) / (input_end - input_start)) * (input - input_start)
 
@@ -31,20 +31,26 @@ int clampInt(int mn, int t, int mx)
   return __max(__min(t, mx), mn);
 }
 
-int vector::angleToIndex(precision angle)
+int vector::angleToIndex(precision angle, precision fovX)
 {
-  precision t = angleToViewportLerp(angle)*xRes;
-  return clampInt(0, roundf(t), xRes-1);
+  precision t = angleToViewportLerp(angle,fovX)*xRes;
+  //R2D::Text(("angle t: " + std::to_string(t) + "\n").data());
+  //return clampInt(0, roundf(t), xRes-1);
+  return roundf(t);
 }
-int vector::pitchToIndex(precision angle)
+int vector::pitchToIndex(precision angle, precision fovY)
 {
+  //R2D::Text(("pitch: " + std::to_string(angle) + "\n").data());
   precision t = map(angle, -fovY/2.0, fovY/2.0, yRes, 0);
-  return clampInt(0, roundf(t), yRes-1);
+  //R2D::Text(("\t\tt: " + std::to_string(t) + "(" + std::to_string(fovY) + ")\n").data());
+  //return clampInt(0, roundf(t), yRes-1);
+  return roundf(t);
 }
 
 precision vector::minAngle(precision a, precision b, precision c, precision d)
 {
   int ind = 0;
+  d = c;
   precision angles[] = {a,b,c,d};
   precision adj[] = {a,b,c,d};
   for (int i = 0; i < 4; i++) //Correct negative underflow angles, and positive overflow angles
@@ -66,7 +72,7 @@ precision vector::maxAngle(precision a, precision b, precision c, precision d)
     if (adj[ind] > adj[i]) ind = i;
   return angles[ind];
 }
-precision vector::angleToViewportLerp(precision angle)
+precision vector::angleToViewportLerp(precision angle, precision fovX)
 {
   precision t = 0.5;
   /*takes an angle, corrects it, and returns a t
@@ -91,8 +97,11 @@ precision vector::distance(point a, point b) {
     precision theta = 0;
     precision top = a.x*b.x + a.y*b.y+a.z*b.z;
     precision bottom = a.distance({0,0,0}) * b.distance({0,0,0});
+    //R2D::Text(("Bottom:" + std::to_string(bottom)+"\n").data());
     theta = top/bottom;
-
+    if(theta >= 1 || theta <= -1)
+    std::__throw_logic_error("Invalid Theta");
+    //R2D::Text(("Theta:" + std::to_string(theta)+"\n").data());
     return acos(theta);
   }
 
@@ -108,7 +117,11 @@ precision vector::distance(point a, point b) {
   {
     //We know that a negative z means negative angle, and vice-versa
     precision dz = p.z - z;
-    precision dl = distance(p) * cos(angle * PI/180.0);
+    precision dl = distance(p);// * cos(angle * PI/180.0);
+    //R2D::Text(("ASIN: " + std::to_string(asin(dz/dl)) + "\n").data());
+    //R2D::Text(("\tfrc: " + std::to_string(dz/dl) + "\n").data());
+    //R2D::Text(("\tdz: " + std::to_string(dz) + "\n").data());
+    //R2D::Text(("\tdl: " + std::to_string(dl) + "\n").data());
     precision theta = abs(asin(dz/dl) * 180.0/PI);
     return dz < 0 ? -theta : theta;
   }
@@ -160,6 +173,6 @@ precision vector::distance(point a, point b) {
   point* vector::fwd(precision angle, precision pitch) { 
     return new point(x + cos(angle*PI/180.0), y + sin(angle*PI/180.0), z + sin(pitch*PI/180.0));
   }
-  bool vector::isPointInViewport(vector camera, vector orientation) { 
+  bool vector::isPointInViewport(vector camera, vector orientation, precision fovX) { 
     return (abs(camera.pivotAngle( *camera.fwd(orientation.x, orientation.y), *this ) * 180.0/PI) < fovX/2);
   }

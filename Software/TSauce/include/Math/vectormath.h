@@ -108,17 +108,17 @@ class vector {
         /// @param camera The camera vector
         /// @param orientation the orientation of the camera
         /// @return whether the camera can see this point
-        bool isPointInViewport(vector camera, vector orientation);
+        bool isPointInViewport(vector camera, vector orientation, precision fovX);
 
         static precision minAngle(precision a, precision b, precision c, precision d);
         static precision maxAngle(precision a, precision b, precision c, precision d);
 
-        static int angleToIndex(precision angle);
-        static int pitchToIndex(precision angle);
+        static int angleToIndex(precision angle, precision fovY);
+        static int pitchToIndex(precision angle, precision fovX);
         
         vector(dimension a, dimension b, dimension c);
         
-        static precision angleToViewportLerp(precision angle);
+        static precision angleToViewportLerp(precision angle, precision fovX);
     
 };
 

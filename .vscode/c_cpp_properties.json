@@ -4,7 +4,8 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/mingw_dev_lib/include"
+                "C:/mingw_dev_lib/include",
+                "${workspaceFolder}/Software/TSauce/include/**"
             ],
             "defines": [
                 "_DEBUG",

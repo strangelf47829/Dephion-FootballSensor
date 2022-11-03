@@ -6,38 +6,22 @@
 #ifndef R3D_H_
 #define R3D_H_
 
-#define xRes Driver::SCREEN_WIDTH
-#define yRes Driver::SCREEN_HEIGHT
-
 class R3D
 {
     private:
+        const int occlusionLeniency = 7;
+        float cullNear = 0;
+        float cullFar = 5000000;
+        void calculateCulledPoly();
         
-
-        //x: pitch, y: yaw, z: roll
-        
-        
-        static const int occlusionLeniency = 7;
-
-        static constexpr float cullNear = 0;
-        static constexpr float cullFar = 500;
-
-        //CulledPolly
-
-
-        //objects
-        static void calculateCulledPoly();
-
-        
-
-
     public:
-        static void Render(obj* object);
-        static void cull(obj* object);
-        static void Render(Poly p);
-        static float fovX, fovY;
-        static vector Camera;
-        static vector orientation;
+        void Render(obj* object, int skip);
+        void cull(obj* object, int skip);
+        void Render(Poly p);
+        float fovX, fovY;
+        vector Camera;
+        vector orientation;
+        
 
 };
 
